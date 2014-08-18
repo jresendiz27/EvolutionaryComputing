@@ -4,7 +4,7 @@ Evolutionary Computing
 For all evolutionary computing homeworks, practices and stuff.
 
 **Languages**
-* Python 2.7.3 Anacoda.
+* Python 2.7.7 Anaconda.
 * Groovy 2.3
 * Javascript V8 (Chrome engine).
 

@@ -18,12 +18,13 @@ It consists in reading a txt file with the format of the maxiterms:
  
  For the given data in "content.txt":
  > 1 0
+ 
  >-1 0
  
  The program's output will be something like this.
  
->| x0  | x1 | (x0 and not(x1) ) or ( not(x1) ) | Evaluation |
-| - | - | - | - |
+| x0 | x1 | (x0 and not(x1)) or (not(x1)) | Evaluation |
+| --- | --- | --- | --- |
 | True | True  | (True and  not(True) ) or ( not(True) ) | False |
 | False | True  | (False and  not(True) ) or ( not(True) ) | False |
 | True | False  | (True and  not(False) ) or ( not(False) ) | True |

@@ -1,0 +1,39 @@
+AI -> "Evolutionari Computing".
+
+Evolutionary_Computing  = {
+	belongs: "Computer Science",
+	doesnt_belongs: "life scienses",
+	terminology: "Biology",
+	apliedTo: ["Economics", "Security", "Life Science", "Optimization"],
+}
+"Environment" -> "Problem"
+"Individual" -> "Solution of the problem".
+"Fitness*" -> ["Constaint", "model"] -> "Quality"
+
+"*Ability to adapt or change the environment."
+
+History = {
+	Jhon_Holland -> ["70's", "Genetic Algorithms"],
+	Rechemberg -> [60:70, "Evolution Strategies"],
+	David_Fogel -> [60, "Evolutionary Programming"],
+	John_Kosa -> [90, "Genetic Programming"]
+}
+
+Features = {
+	core: [
+	"All environment has finite resources",
+	"All species have basic insticts",
+	"Selection is unavoidable",
+	"The best adapted"
+	]
+}
+
+Genetic_Information = {
+	Phenotype : "What you can see!",
+	Genotype : "What you cannot see! (duh!)"
+}
+
+Evolutionary_Computing['Definition'] = """The best combinations 
+	or solutions are repeated in every generation"""
+Evolutionary_Computing['Units'] = {Evolution:"population",Selection:"Individual"}
+Evolutionary_Computing['Guidance_Forces'] = "What makes the species route change"

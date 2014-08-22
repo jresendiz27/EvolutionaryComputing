@@ -36,4 +36,6 @@ Genetic_Information = {
 Evolutionary_Computing['Definition'] = """The best combinations 
 	or solutions are repeated in every generation"""
 Evolutionary_Computing['Units'] = {Evolution:"population",Selection:"Individual"}
-Evolutionary_Computing['Guidance_Forces'] = "What makes the species route change"
+Evolutionary_Computing['Guidance_Forces'] = """What makes the species route change; 
+	pushes the population to be better"""
+	

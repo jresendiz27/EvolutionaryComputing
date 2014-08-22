@@ -9,6 +9,8 @@ if len(sys.argv) is not 1:
     variables = int(sys.argv[1])
 numberposibilites = 2 ** variables
 array = np.ones((numberposibilites,variables+2))
+print "Array Shape : " + str(array.shape)
+print "Size of array : " + str(array.nbytes/1024) + " Kbytes"
 #threads
 def fillArray( threadName, startPoint, endPoint ):
     print "From thread [ "+threadName + " ]\n"
@@ -20,13 +22,10 @@ def fillArray( threadName, startPoint, endPoint ):
                 array[row, column - 1] = 0
 
 try:
-    fillArray("Main", 0,numberposibilites)
+    fillArray("Main", 0, numberposibilites)
 except Exception, e:
     raise
 else:
     pass
 finally:
     pass
-    #for row in range(len(array)):
-    #    print array[row]
-    #    print "\n"

@@ -11,7 +11,7 @@ variables = 20
 if len(sys.argv) is not 1:
     variables = int(sys.argv[1])
 numberposibilites = 2 ** variables
-array = np.zeros((numberposibilites, variables+1))
+array = np.zeros((numberposibilites, variables + 1))
 print "Array Shape : " + str(array.shape)
 print "Size of array : " + str(array.nbytes / 1024) + " Kbytes"
 # The method which becomes part of a thread in order to fill the huge array
@@ -24,13 +24,30 @@ def fillArray(threadName, startPoint, endPoint):
                 array[row, column - 1] = 0
 
 
-#gets all maxiterms and evaluate'em using threads again
-def evaluateAllMaxiterms(numberOfVariables = variables):
-    for row in range(0, 2**numberOfVariables):
-        array[row,numberOfVariables] = -1 #that one will be evaluated :P
+# gets all maxiterms and evaluate'em using threads again
+def evaluateAllMaxiterms(numberOfVariables=variables):
+    allTerms = getGlobalExpression()
+    for row in range(0, 2 ** numberOfVariables):
+        array[row, numberOfVariables] = evaluateExpression(array[row, :-1],allTerms)  #that one will be evaluated :P
 
-def getAllMaxiterms():
-    
+
+#evaluating expression
+def evaluateExpression(arrayExpression, allTerms):
+    result = 1
+    for row in range(0, numberposibilites):
+        partial = 1
+        for column in range(0, variables):
+            if allTerms[row, column] is 1:
+                partial = partial and 1
+            if allTerms[row, column] is 0:
+                partial = partial and not(allTerms[row,column])
+        result = partial or result
+    return result
+
+def getGlobalExpression():
+    return array[:, :-1]
+
+
 #main method, from this point all the program will be executed
 def main():
     try:
@@ -45,7 +62,7 @@ def main():
         raise
     else:
         evaluateAllMaxiterms()
-        getAllMaxiterms()
+        #getGlobalExpression()
     finally:
         print array
         #pass

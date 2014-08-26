@@ -5,7 +5,6 @@ import thread
 import cProfile
 import re
 # Start of script
-
 variables = 20
 # in case there is an argument for testing purposes
 if len(sys.argv) is not 1:
@@ -26,12 +25,35 @@ def fillArray(threadName, startPoint, endPoint):
 
 # gets all maxiterms and evaluate'em using threads again
 def evaluateAllMaxiterms(numberOfVariables=variables):
+    if variables >= 4:
+        thread.start_new_thread(fillArray, ("ThreadMaxiterm-1", 0, numberposibilites / 4 ))
+        thread.start_new_thread(fillArray, ("ThreadMaxiterm-2", (numberposibilites / 4), (numberposibilites / 4) * 2 ))
+        thread.start_new_thread(fillArray,
+                                ("ThreadMaxiterm-3", (numberposibilites / 4) * 2, (numberposibilites / 4) * 3 ))
+        thread.start_new_thread(fillArray, ("ThreadMaxiterm-4", (numberposibilites / 4) * 3, numberposibilites ))
+    else:
+        fillArray("ThreadMaxiterm", 0, numberposibilites)
+
+
+# function to be concurrent in order to evaluate all the expression
+def evaluateMaxitermsThread(threadName, startPoint, endPoint):
     allTerms = getGlobalExpression()
-    for row in range(0, 2 ** numberOfVariables):
-        array[row, numberOfVariables] = evaluateExpression(array[row, :-1],allTerms)  #that one will be evaluated :P
+    for row in range(startPoint, endPoint):
+        array[row, variables] = evaluateExpression(array[row, :-1], allTerms)
 
 
-#evaluating expression
+#Defines if its necessary to use threads or not!
+def generateHugeArray():
+    if variables >= 4:
+        thread.start_new_thread(fillArray, ("Thread-1", 0, numberposibilites / 4 ))
+        thread.start_new_thread(fillArray, ("Thread-2", (numberposibilites / 4), (numberposibilites / 4) * 2 ))
+        thread.start_new_thread(fillArray, ("Thread-3", (numberposibilites / 4) * 2, (numberposibilites / 4) * 3 ))
+        thread.start_new_thread(fillArray, ("Thread-4", (numberposibilites / 4) * 3, numberposibilites ))
+    else:
+        fillArray("Main", 0, numberposibilites)
+
+
+# evaluating expression
 def evaluateExpression(arrayExpression, allTerms):
     result = 1
     for row in range(0, numberposibilites):
@@ -40,33 +62,28 @@ def evaluateExpression(arrayExpression, allTerms):
             if allTerms[row, column] is 1:
                 partial = partial and 1
             if allTerms[row, column] is 0:
-                partial = partial and not(allTerms[row,column])
+                partial = partial and not (allTerms[row, column])
         result = partial or result
     return result
 
+
+#Get all the expression to be evaluated
 def getGlobalExpression():
     return array[:, :-1]
 
 
-#main method, from this point all the program will be executed
+# main method, from this point all the program will be executed
 def main():
     try:
-        if variables >= 4:
-            thread.start_new_thread(fillArray, ("Thread-1", 0, numberposibilites / 4 ))
-            thread.start_new_thread(fillArray, ("Thread-2", (numberposibilites / 4), (numberposibilites / 4) * 2 ))
-            thread.start_new_thread(fillArray, ("Thread-3", (numberposibilites / 4) * 2, (numberposibilites / 4) * 3 ))
-            thread.start_new_thread(fillArray, ("Thread-4", (numberposibilites / 4) * 3, numberposibilites ))
-        else:
-            fillArray("Main", 0, numberposibilites)
+        generateHugeArray()
+        evaluateAllMaxiterms()
     except Exception, e:
         raise
     else:
-        evaluateAllMaxiterms()
-        #getGlobalExpression()
+        pass
     finally:
-        print array
-        #pass
+        pass
 
 #in order to get all execution time and all the calls the program did while executing time
-#cProfile.run('main()')
-main()
+cProfile.run('main()')
+#main()

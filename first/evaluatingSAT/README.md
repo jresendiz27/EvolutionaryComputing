@@ -1,7 +1,7 @@
-Boolean satisfiability problem
+Boolean satisfiability problem (Evaluation)
 =====================
 
-Practice #1:
+Practice #2:
 
 **Languages**
 
@@ -25,6 +25,7 @@ The graphic will be generated using pyplot or matplotlib.
  Getting all the maxiterms and saving just 1 inside the huge array.
  
 * Step 3:
+
  All the performance values generated after the evaluation are going to be saved in script's scope; then generate the graphic and voilà!
 
 ----------

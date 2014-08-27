@@ -2,11 +2,7 @@
 import sys
 import thread
 import cProfile
-
 import numpy as np
-
-
-
 
 # Start of script
 variables = 20

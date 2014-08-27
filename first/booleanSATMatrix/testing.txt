@@ -1,0 +1,140 @@
+azu@stars ~/Git/EvolutionaryComputing/first/booleanSATMatrix $ python SuperSAT.py 5
+         265 function calls in 0.018 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.018    0.018 <string>:1(<module>)
+        1    0.000    0.000    0.001    0.001 SuperSAT.py:15(createExpression)
+       32    0.000    0.000    0.001    0.000 SuperSAT.py:25(int2binAnd)
+       32    0.000    0.000    0.001    0.000 SuperSAT.py:29(int2bin)
+        1    0.016    0.016    0.018    0.018 SuperSAT.py:33(evaluateVariables)
+        1    0.000    0.000    0.018    0.018 SuperSAT.py:46(main)
+       32    0.000    0.000    0.000    0.000 {len}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+       64    0.000    0.000    0.000    0.000 {method 'join' of 'str' objects}
+        1    0.000    0.000    0.000    0.000 {method 'replace' of 'str' objects}
+        1    0.000    0.000    0.000    0.000 {method 'split' of 'str' objects}
+       98    0.000    0.000    0.000    0.000 {range}
+
+
+azu@stars ~/Git/EvolutionaryComputing/first/booleanSATMatrix $ python SuperSAT.py 6
+         521 function calls in 0.079 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.079    0.079 <string>:1(<module>)
+        1    0.000    0.000    0.002    0.002 SuperSAT.py:15(createExpression)
+       64    0.001    0.000    0.001    0.000 SuperSAT.py:25(int2binAnd)
+       64    0.001    0.000    0.001    0.000 SuperSAT.py:29(int2bin)
+        1    0.075    0.075    0.079    0.079 SuperSAT.py:33(evaluateVariables)
+        1    0.000    0.000    0.079    0.079 SuperSAT.py:46(main)
+       64    0.000    0.000    0.000    0.000 {len}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+      128    0.000    0.000    0.000    0.000 {method 'join' of 'str' objects}
+        1    0.000    0.000    0.000    0.000 {method 'replace' of 'str' objects}
+        1    0.000    0.000    0.000    0.000 {method 'split' of 'str' objects}
+      194    0.001    0.000    0.001    0.000 {range}
+
+
+azu@stars ~/Git/EvolutionaryComputing/first/booleanSATMatrix $ python SuperSAT.py 7
+         1033 function calls in 0.298 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.298    0.298 <string>:1(<module>)
+        1    0.001    0.001    0.004    0.004 SuperSAT.py:15(createExpression)
+      128    0.002    0.000    0.003    0.000 SuperSAT.py:25(int2binAnd)
+      128    0.003    0.000    0.003    0.000 SuperSAT.py:29(int2bin)
+        1    0.288    0.288    0.298    0.298 SuperSAT.py:33(evaluateVariables)
+        1    0.000    0.000    0.298    0.298 SuperSAT.py:46(main)
+      128    0.000    0.000    0.000    0.000 {len}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+      256    0.000    0.000    0.000    0.000 {method 'join' of 'str' objects}
+        1    0.000    0.000    0.000    0.000 {method 'replace' of 'str' objects}
+        1    0.000    0.000    0.000    0.000 {method 'split' of 'str' objects}
+      386    0.003    0.000    0.003    0.000 {range}
+
+
+azu@stars ~/Git/EvolutionaryComputing/first/booleanSATMatrix $ python SuperSAT.py 8
+         2057 function calls in 1.574 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    1.574    1.574 <string>:1(<module>)
+        1    0.002    0.002    0.008    0.008 SuperSAT.py:15(createExpression)
+      256    0.004    0.000    0.005    0.000 SuperSAT.py:25(int2binAnd)
+      256    0.006    0.000    0.008    0.000 SuperSAT.py:29(int2bin)
+        1    1.542    1.542    1.574    1.574 SuperSAT.py:33(evaluateVariables)
+        1    0.000    0.000    1.574    1.574 SuperSAT.py:46(main)
+      256    0.000    0.000    0.000    0.000 {len}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+      512    0.001    0.000    0.001    0.000 {method 'join' of 'str' objects}
+        1    0.000    0.000    0.000    0.000 {method 'replace' of 'str' objects}
+        1    0.000    0.000    0.000    0.000 {method 'split' of 'str' objects}
+      770    0.017    0.000    0.017    0.000 {range}
+
+
+azu@stars ~/Git/EvolutionaryComputing/first/booleanSATMatrix $ python SuperSAT.py 9
+         4105 function calls in 6.515 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    6.515    6.515 <string>:1(<module>)
+        1    0.002    0.002    0.015    0.015 SuperSAT.py:15(createExpression)
+      512    0.009    0.000    0.011    0.000 SuperSAT.py:25(int2binAnd)
+      512    0.014    0.000    0.018    0.000 SuperSAT.py:29(int2bin)
+        1    6.439    6.439    6.515    6.515 SuperSAT.py:33(evaluateVariables)
+        1    0.000    0.000    6.515    6.515 SuperSAT.py:46(main)
+      512    0.000    0.000    0.000    0.000 {len}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+     1024    0.002    0.000    0.002    0.000 {method 'join' of 'str' objects}
+        1    0.000    0.000    0.000    0.000 {method 'replace' of 'str' objects}
+        1    0.001    0.001    0.001    0.001 {method 'split' of 'str' objects}
+     1538    0.046    0.000    0.046    0.000 {range}
+
+
+azu@stars ~/Git/EvolutionaryComputing/first/booleanSATMatrix $ python SuperSAT.py 10
+         8201 function calls in 29.139 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000   29.139   29.139 <string>:1(<module>)
+        1    0.004    0.004    0.034    0.034 SuperSAT.py:15(createExpression)
+     1024    0.022    0.000    0.026    0.000 SuperSAT.py:25(int2binAnd)
+     1024    0.050    0.000    0.068    0.000 SuperSAT.py:29(int2bin)
+        1   28.824   28.824   29.139   29.139 SuperSAT.py:33(evaluateVariables)
+        1    0.001    0.001   29.139   29.139 SuperSAT.py:46(main)
+     1024    0.001    0.000    0.001    0.000 {len}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+     2048    0.006    0.000    0.006    0.000 {method 'join' of 'str' objects}
+        1    0.001    0.001    0.001    0.001 {method 'replace' of 'str' objects}
+        1    0.002    0.002    0.002    0.002 {method 'split' of 'str' objects}
+     3074    0.228    0.000    0.228    0.000 {range}
+
+
+azu@stars ~/Git/EvolutionaryComputing/first/booleanSATMatrix $ python SuperSAT.py 11
+         16393 function calls in 110.569 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000  110.569  110.569 <string>:1(<module>)
+        1    0.008    0.008    0.064    0.064 SuperSAT.py:15(createExpression)
+     2048    0.040    0.000    0.048    0.000 SuperSAT.py:25(int2binAnd)
+     2048    0.108    0.000    0.142    0.000 SuperSAT.py:29(int2bin)
+        1  109.496  109.496  110.567  110.567 SuperSAT.py:33(evaluateVariables)
+        1    0.002    0.002  110.569  110.569 SuperSAT.py:46(main)
+     2048    0.002    0.000    0.002    0.000 {len}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+     4096    0.012    0.000    0.012    0.000 {method 'join' of 'str' objects}
+        1    0.002    0.002    0.002    0.002 {method 'replace' of 'str' objects}
+        1    0.006    0.006    0.006    0.006 {method 'split' of 'str' objects}
+     6146    0.894    0.000    0.894    0.000 {range}
+
+

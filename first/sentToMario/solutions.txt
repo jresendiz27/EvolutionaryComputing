@@ -1,0 +1,4 @@
+Values:01100 F(x) = 0 and not 1  and 0 and 0 or not 0 and 1 and 1  and not 0 = True
+Values:01110 F(x) = 0 and not 1  and 1 and 0 or not 0 and 1 and 1  and not 0 = True
+Values:10011 F(x) = 1 and not 0  and 1 and 1 or not 1 and 0 and 0  and not 1 = True
+Values:10111 F(x) = 1 and not 0  and 1 and 1 or not 1 and 0 and 1  and not 1 = True

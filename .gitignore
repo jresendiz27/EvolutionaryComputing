@@ -52,6 +52,10 @@ coverage.xml
 # Sphinx documentation
 docs/_build/
 
+# Non important
+first/sentToMario/
+first/booleanSATExpression/test.py
+
 .idea/
 *.iml
 *.class

@@ -8,12 +8,12 @@ import cProfile
 import numpy as np
 
 numberOfVariables = 20
-#results = open('superSolutions.txt','w')
+'''results = open('superSolutions.txt','w')'''
 if len(sys.argv) is not 1:
     numberOfVariables = int(sys.argv[1])
 
 def createExpression():
-	'''Creates the 'matrix' of maxiterms in a string expression'''
+	#Creates the 'matrix' of maxiterms in a string expression
 	expression = ""
 	for row in range(0, 2 ** numberOfVariables):
 		expression += int2binAnd(row,numberOfVariables)
@@ -23,11 +23,11 @@ def createExpression():
 	return expression.split('1')
 
 def int2binAnd(n, count):
-    '''returns the binary of integer n, using count number of digits'''
+    #returns the binary of integer n, using count number of digits'''
     return " and ".join([str((n >> y) & 1) for y in range(count-1, -1, -1)])
 
 def int2bin(n, count):
-    """returns the binary of integer n, using count number of digits"""
+    #returns the binary of integer n, using count number of digits"""
     return "".join([str((n >> y) & 1) for y in range(count-1, -1, -1)])
 
 def evaluateVariables():

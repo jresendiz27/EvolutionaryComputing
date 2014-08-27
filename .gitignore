@@ -53,7 +53,7 @@ coverage.xml
 docs/_build/
 
 # Non important
-first/sentToMario
+first/sentToMario/
 first/booleanSATExpression/test.py
 
 .idea/

@@ -1,18 +1,24 @@
-# All the libraries we are going to use
+'''
+López Garduño Blanca Azucena
+Reséndiz Arteaga Juan Alberto
+SAT problem
+'''# All the libraries we are going to use
 import sys
 import thread
 import cProfile
 from threading import Thread
 import time
 import numpy as np
+from pylab import *
 
 # Start of script
-variables = 20
+variables = 13
 # in case there is an argument for testing purposes
 if len(sys.argv) is not 1:
     variables = int(sys.argv[1])
 numberposibilites = 2 ** variables
 array = np.zeros((numberposibilites, variables + 1))
+actual_time = np.zeros(variables)
 # Basic array information
 print "Array Shape : " + str(array.shape)
 print "Size of array : " + str(array.nbytes / 1024) + " Kbytes"
@@ -132,15 +138,25 @@ def main():
         generateHugeArray()
         #for variableToEvaluate in range(1, variables+1):
         #    evaluateAllMaxiterms(variableToEvaluate)
+        var = arange(0,variables,1)
         start_time = time.time()
-        evaluateAllMaxiterms(variables)
-        print ("--- Execution time:  %s seconds ---"%(time.time() - start_time))
+        for i in var:
+            evaluateAllMaxiterms(i)
+            actual_time[i] = time.time() - start_time
+            print ("Variables: %s --- Execution time:  %s seconds ---"%(i,actual_time[i]))
+            start_time = time.time()
+        plot(var,actual_time)
+        ylabel('time (s)')
+        xlabel('number or variables')
+        title('Time evaluation')
+        grid(True)
+        savefig("test.png")
+        show()
     except Exception, e:
         print e
     else:
         pass
-    finally:
-        #print array
+    finally:        #print array
         pass
 
 #in order to get all execution time and all the calls the program did while executing time

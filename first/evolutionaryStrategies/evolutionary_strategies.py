@@ -3,57 +3,57 @@ Created on 09/09/2014
 
 @author: azu
 '''
-import numpy as np;
 import random
+import numpy as np 
+import math
 
-numberOfVariables = 1 #configurable
-maxGenerations = 1000 #configurable
-epsilon = 0.000001 #configurable
-sigma = np.zeros(maxGenerations) 
-sigma[0] = 1 #configurable
+numberOfVariables = 1
+maxGenerations = 10000
+epsilon = 0.001
+sigma = [np.float(0) for i in range(0,maxGenerations+1)]
+sigma[0] = 10
 
-generations = 0
+def start(number):
+    return [np.float(0) for i in range(number)]
 
-#Creates a random array with values between 0 and 1
-def initializeVariables():
-    return [np.long(random.uniform(0,1)) for i in range(numberOfVariables)]
+def mutate(variables, generation):
+    return [variables[i] + sigma[generation]*random.gauss(0,1) for i in range(numberOfVariables)]
 
-#Creates new values using the sigma value and a random number between 0 and 1
-def mutateVariables(variables):
-    return [variables[i] + sigma[generations] * random.uniform(0,1) for i in range(numberOfVariables)]
-
-#Function/problem to be solved (minimized)
-def evaluateVariables(x):
+def fitness(x):
     return ((1-x[0])**4 - (2*x[0]+10)**2)
 
+def success(replacement, generation):
+    ps = replacement / generation
+    if(generation % numberOfVariables == 0):
+        if(ps > 1/5):
+            return sigma[generation - numberOfVariables]/0.817
+        if(ps < 1/5):
+            return sigma[generation - numberOfVariables]*0.817
+        if(ps == 1/5):
+            return sigma[generation - numberOfVariables]
+    else:
+        return sigma[generation - 1]
+
 def evolutionaryStrategies():
-    generations = 0
+    generation = 0
     replacement = 0
     ps = 0
-    epsilon = 0
-    variables = initializeVariables() #Initialize random values for the variables
-    print(variables)
-    while True:
-        last = variables
-        variableEvaluation = evaluateVariables(variables) #Evaluating variables
-        offspring = mutateVariables(variables) #Mutation of the variables
-        generations += 1
-        if(evaluateVariables(offspring) < variableEvaluation): #If the offspring is better than the original population
-            replacement += 1 
-            ps = replacement / generations
-            variables = offspring #Replaces with the better solution
-            if(generations % numberOfVariables == 0): #Conditions to change sigma value
-                if(ps > 1/5):
-                    sigma[generations] = sigma[generations - numberOfVariables]/0.817
-                if(ps < 1/5):
-                    sigma[generations] = sigma[generations - numberOfVariables]*0.817
-                if(ps == 1/5):
-                    sigma[generations] = sigma[generations - numberOfVariables]
-            else:
-                sigma[generations] = sigma[generations - 1]
-        print(variables, replacement, generations)
-        #Stop condition. If maximum number of generation has been reached or the variables changed less than an epsilon value
-        if(generations >= maxGenerations or min(np.subtract(variables,last)) <= epsilon): 
-            break;
+    variables = start(numberOfVariables)
+    fitnessDad = fitness(variables)
+    last = fitnessDad + 1
+    comparison = abs(last-fitnessDad)
+    while(generation < maxGenerations and comparison > epsilon):
+        offspring = mutate(variables, generation)
+        fitnessSon = fitness(offspring)
+        if(fitnessSon < fitnessDad): #Son better than Dad
+            last = fitnessDad 
+            variables = offspring
+            fitnessDad = fitnessSon
+            replacement += 1
+        generation += 1
+        if(generation < maxGenerations):
+            sigma[generation] = success(replacement, generation)
+        comparison = abs(last-fitnessDad)
+        print(variables, fitnessDad, offspring, fitnessSon, generation, comparison )        
 
 evolutionaryStrategies()

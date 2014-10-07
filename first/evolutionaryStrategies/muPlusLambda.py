@@ -11,7 +11,7 @@ def initialize(number):
     return [[np.float(random.gauss(0,100)) for i in range(number)] for u in range(mu)]
 
 def mutate(variables, generation, numberOfVariables):
-    return [[variables[l%mu][i] + sigma[generation]*random.gauss(0,1) for i in range(numberOfVariables)] for l in range(lamb)]
+    return [[variables[i] + sigma[generation]*random.gauss(0,1) for i in range(numberOfVariables)] for l in range(lamb)]
 
 def success(replacement, generation, numberOfVariables):
     ps = replacement / float(generation)
@@ -46,9 +46,13 @@ def muPlusLambda(func):
     comparison = 1
     variables = initialize(num)
     fitnessArray = [function[func](variables[u]) for u in range(mu)]
-    while(generation < maxGenerations and comparison > epsilon):
+    best = select(fitnessArray, 'best')
+    print(variables[best], fitnessArray[best], sigma[generation], generation, sigma[generation], comparison)
+    while(generation < maxGenerations and sigma[generation] > epsilon):
         actualBest = min(fitnessArray)
-        offspring = mutate(variables, generation, num)
+        best = select(fitnessArray, 'best')
+
+        offspring = mutate(variables[best], generation, num)
         fitnessSon = [function[func](offspring[l]) for l in range(lamb)]
         for i in range(lamb):
             variables.append(offspring[i])
@@ -68,8 +72,8 @@ def muPlusLambda(func):
         generation += 1
         if(generation < maxGenerations):
             sigma[generation] = success(replacement, generation, num)
-        best = select(fitnessArray, 'best')
-        print(variables[best], fitnessArray[best], generation, sigma[generation], comparison)
+        
+        print(variables[best], fitnessArray[best], sigma[generation], generation, sigma[generation], comparison)
     return "Vars: %s Fitness: %s Generations: %d"%(variables[best], fitnessArray[best], generation)
 
-muPlusLambda(0)
+#muPlusLambda(0)

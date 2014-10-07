@@ -50,4 +50,4 @@ def onePlusOne(func):
         print(variables, fitnessDad, offspring, fitnessSon, generation, comparison, num)
     return "Vars: %s Fitness: %s Generations: %d"%(variables, fitnessDad, generation)
 
-#onePlusOne(3)
+#onePlusOne(0)

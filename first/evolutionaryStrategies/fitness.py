@@ -33,7 +33,7 @@ def fitness7(x):
 	return (10*x[0]**3+3*x[0]**2+5)**2
 
 def fitness8(x):
-	return 0.5/(math.sqrt(1+x[0]**2)- math.sqrt(1+x[0]**2)*(1-0.5/(1+x[0]**2)))+x[0]
+	return 0.5/math.sqrt(1+(x[0]**2)) - math.sqrt(1+(x[0]**2))*(1-(0.5/(1+(x[0]**2)))) + x[0]
 
 def fitness9(x):
 	return (np.finfo(float).eps)**x[0]-x[0]**3

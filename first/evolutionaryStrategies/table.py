@@ -17,13 +17,13 @@ def main():
 	fo.write("\\end{tabular}\n\\newpage\nMax. generations: 1000 Epsilon: 1e-05 Sigma: 10 Mu: 10 Lambda: 10 \\\\\n\\begin{tabular}{|c|p{5.4cm}|p{5.4cm}|p{5.4cm}|p{5.4cm}|}\n\\hline\nFunc & 1+1 & u+1 & u+h & u,h \\\\ \n\hline")
 	for i in range(6,8):
 		fo.write(" %s & %s & %s & %s & %s \\\\\n \\hline \n"%(i,onePlusOne.onePlusOne(i), muPlusOne.muPlusOne(i), muPlusLambda.muPlusLambda(i), muCommaLambda.muCommaLambda(i)))
-	for i in range(9,15):
+	for i in range(8,14):
 		fo.write(" %s & %s & %s & %s & %s \\\\\n \\hline \n"%(i,onePlusOne.onePlusOne(i), muPlusOne.muPlusOne(i), muPlusLambda.muPlusLambda(i), muCommaLambda.muCommaLambda(i)))
 	fo.write("\\end{tabular}\n\\newpage\nMax. generations: 1000 Epsilon: 1e-05 Sigma: 10 Mu: 10 Lambda: 10 \\\\\n\\begin{tabular}{|c|p{5.4cm}|p{5.4cm}|p{5.4cm}|p{5.4cm}|}\n\\hline\nFunc & 1+1 & u+1 & u+h & u,h \\\\ \n\hline")
-	for i in range(15,20):
+	for i in range(14,19):
 		fo.write(" %s & %s & %s & %s & %s \\\\\n \\hline \n"%(i,onePlusOne.onePlusOne(i), muPlusOne.muPlusOne(i), muPlusLambda.muPlusLambda(i), muCommaLambda.muCommaLambda(i)))
 	fo.write("\\end{tabular}\n\\newpage\nMax. generations: 1000 Epsilon: 1e-05 Sigma: 10 Mu: 10 Lambda: 10 \\\\\n\\begin{tabular}{|c|p{5.4cm}|p{5.4cm}|p{5.4cm}|p{5.4cm}|}\n\\hline\nFunc & 1+1 & u+1 & u+h & u,h \\\\ \n\hline")
-	for i in range(20,23):
+	for i in range(19,23):
 		fo.write(" %s & %s & %s & %s & %s \\\\\n \\hline \n"%(i,onePlusOne.onePlusOne(i), muPlusOne.muPlusOne(i), muPlusLambda.muPlusLambda(i), muCommaLambda.muCommaLambda(i)))
 	fo.write("\\end{tabular}\n\\newpage\n\\begin{tabular}{|c|p{5.4cm}|p{5.4cm}|p{5.4cm}|p{5.4cm}|}\n\\hline\nFunc & 1+1 & u+1 & u+h & u,h \\\\ \n\hline")
 	for i in range(23,24):

@@ -8,7 +8,7 @@ import math
 from fitness import *
 
 def initialize(number):
-    return [np.float(random.gauss(0,100)) for i in range(number)]
+    return [[np.float(random.gauss(0,100)) for i in range(number)] for u in range(1)]
 
 def mutate(variables, generation, numberOfVariables):
     return [variables[i] + sigma[generation]*random.gauss(0,1) for i in range(numberOfVariables)]
@@ -25,29 +25,42 @@ def success(replacement, generation, numberOfVariables):
     else:
         return sigma[generation - 1]
 
+def select(fitnessArray, mode):
+    f = fitnessArray[:]
+    f.sort()
+    middleValue = f.pop(len(f)/2)
+    selected = {'best': fitnessArray.index(min(fitnessArray)),
+        'worst': fitnessArray.index(max(fitnessArray))}
+    return selected[mode]
+
 def onePlusOne(func):
-    print("\nES: 1+1 \tFunction: %s"%(func))
+    print("\nES: u+1 \tFunction: %s"%(func))
     generation = 0
     replacement = 0
     ps = 0
     num = numberOfVariables[func]
+    comparison = 1
     variables = initialize(num)
-    fitnessDad = function[func](variables)
-    actualBest = fitnessDad + 1
-    comparison = abs(actualBest-fitnessDad)
-    while(generation < maxGenerations and comparison > epsilon):
-        offspring = mutate(variables, generation, num)
+    fitnessArray = [function[func](variables[u]) for u in range(1)]
+    best = select(fitnessArray, 'best')
+    while(generation < maxGenerations and sigma[generation] > epsilon and min(fitnessArray) > float('-inf')):
+        actualBest = min(fitnessArray)
+        selectedIndex = select(fitnessArray, 'best')
+        offspring = mutate(variables[selectedIndex], generation, num)
         fitnessSon = function[func](offspring)
-        if(fitnessSon < fitnessDad): #Son better than Dad
-            actualBest = fitnessDad 
-            variables = offspring
-            fitnessDad = fitnessSon
+        worst = select(fitnessArray, 'worst')
+        if(fitnessSon < fitnessArray[worst]): #Son better than worst dad
+            variables[worst] = offspring
+            fitnessArray[worst] = fitnessSon
             replacement += 1
+        if(actualBest > min(fitnessArray)):
+            comparison = abs(actualBest - min(fitnessArray))
         generation += 1
         if(generation < maxGenerations):
             sigma[generation] = success(replacement, generation, num)
-        comparison = abs(actualBest-fitnessDad)
-        print(variables, fitnessDad, offspring, fitnessSon, generation, comparison, num)
-    return "Vars: %s Fitness: %s Generations: %d"%(variables, fitnessDad, generation)
+        best = select(fitnessArray, 'best')
+        print(variables[best], fitnessArray[best], generation,
+            sigma[generation], comparison)
+    return "Vars: %s Fitness: %s Generations: %d"%(variables[best], fitnessArray[best], generation)
 
 #onePlusOne(0)

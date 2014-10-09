@@ -45,7 +45,8 @@ def muPlusOne(func):
     comparison = 1
     variables = initialize(num)
     fitnessArray = [function[func](variables[u]) for u in range(mu)]
-    while(generation < maxGenerations and comparison > epsilon):
+    best = select(fitnessArray, 'best')
+    while(generation < maxGenerations and comparison > epsilon and min(fitnessArray) > float('-inf')):
         actualBest = min(fitnessArray)
         selectedIndex = select(fitnessArray, 'best')
         offspring = mutate(variables[selectedIndex], generation, num)

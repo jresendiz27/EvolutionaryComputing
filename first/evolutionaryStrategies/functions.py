@@ -5,7 +5,7 @@
 10+x**3-2*x-5*(np.finfo(float).eps)**x
 x**2- 10*(np.finfo(float).eps)**(0.1*x)
 (10*x**3+3*x**2+5)**2
-0.5/(math.sqrt(1+x**2)- math.sqrt(1+x**2)*(1-0.5/(1+x**2)))+x
+0.5/math.sqrt(1+x**2)- math.sqrt(1+x**2)*(1-0.5/(1+x**2))+x
 (np.finfo(float).eps)**x-x**3
 (x**2-1)**3-(2*x-5)**4
 (-4*x**2-20*x-100) + (1-x)**4

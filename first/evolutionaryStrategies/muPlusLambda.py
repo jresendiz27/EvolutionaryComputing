@@ -48,7 +48,7 @@ def muPlusLambda(func):
     fitnessArray = [function[func](variables[u]) for u in range(mu)]
     best = select(fitnessArray, 'best')
     print(variables[best], fitnessArray[best], sigma[generation], generation, sigma[generation], comparison)
-    while(generation < maxGenerations and sigma[generation] > epsilon):
+    while(generation < maxGenerations and sigma[generation] > epsilon and min(fitnessArray) > float('-inf')):
         actualBest = min(fitnessArray)
         best = select(fitnessArray, 'best')
 

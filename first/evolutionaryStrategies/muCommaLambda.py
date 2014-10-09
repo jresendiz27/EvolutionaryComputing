@@ -47,7 +47,8 @@ def muCommaLambda(func):
     comparison = 1
     variables = initialize(num)
     fitnessArray = [function[func](variables[u]) for u in range(mu)]
-    while(generation < maxGenerations and sigma[generation] > epsilon):
+    best = select(fitnessArray, 'best')
+    while(generation < maxGenerations and sigma[generation] > epsilon and min(fitnessArray) > float('-inf')):
         best = select(fitnessArray, 'best')
         actualBest = fitnessArray[best]
         offspring = mutate(variables[best], generation, num)

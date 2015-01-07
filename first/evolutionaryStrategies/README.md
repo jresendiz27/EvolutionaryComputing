@@ -12,3 +12,5 @@ It consist in find the most accurate values for the minimum of the function
 * (1-x)^4 - (2x+10)^2
 
 Using (1+1,EE) evolutionary strategies it finds a value, evaluate it, mutate the original value, evaluate the new value and select th best 1000 times.
+
+It's necessary to run the table.py in order to create the latex file and all the graphics, including all the algorithms.

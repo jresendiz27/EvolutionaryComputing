@@ -1,11 +1,20 @@
+__author__="alberto"
 '''
 Fitnesses
 @author: azu
 '''
+#
 import math
 import numpy as np
 import random
-
+from ImageMaker import imageMaker
+#
+maxGenerations = 1000
+sigma = [np.float(0) for i in range(0,maxGenerations+1)]
+sigma[0] = 10
+epsilon = 0.00001
+mu = 10
+lamb = 10
 a = [[-32,-16,0,16,32,-32,-16,0,16,32,-32,-16,0,16,32,-32,-16,0,16,32,-32,-16,0,16,32], [-32,-32,-32,-32,-32,-16,-16,-16,-16,-16,0,0,0,0,0,16,16,16,16,16,32,32,32,32,32]]
 
 def fitness0(x):
@@ -109,10 +118,3 @@ function = {0: fitness0, 1: fitness1, 2: fitness2, 3: fitness3, 4: fitness4, 5: 
 	8: fitness8, 9: fitness9, 10: fitness10, 11: fitness11, 12: fitness12, 13: fitness13, 14: fitness14,
 	15: fitness15, 16: fitness16, 17: fitness17, 18: fitness18, 19: fitness19, 20: fitness20, 21: fitness21,
 	22: fitness22, 23: fitness23, 24: fitness24, 25: fitness25, 26: fitness26}
-
-maxGenerations = 1000
-sigma = [np.float(0) for i in range(0,maxGenerations+1)]
-sigma[0] = 10
-epsilon = 0.00001
-mu = 10
-lamb = 10

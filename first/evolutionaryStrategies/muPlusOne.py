@@ -62,8 +62,12 @@ def muPlusOne(func):
         if(generation < maxGenerations):
             sigma[generation] = success(replacement, generation, num)
         best = select(fitnessArray, 'best')
-        print(variables[best], fitnessArray[best], generation,
-            sigma[generation], comparison)
+    print(variables[best], fitnessArray[best], generation,
+        sigma[generation], comparison)
+    if(num > 1):
+        print(imageMaker(number_of_variables=num, name=str(func)+"_muPlusOne", point=([variables[best][0]],[variables[best][1]], [fitnessArray[best]]), func=function[func]))
+    else:
+        print(imageMaker(number_of_variables=num, name=str(func)+"_muPlusOne", point=(variables[best], [fitnessArray[best]]), func=function[func]))
     return "Vars: %s Fitness: %s Generations: %d"%(variables[best], fitnessArray[best], generation)
 
 #muPlusOne(0)

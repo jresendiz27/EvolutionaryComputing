@@ -73,7 +73,12 @@ def muPlusLambda(func):
         if(generation < maxGenerations):
             sigma[generation] = success(replacement, generation, num)
         
-        print(variables[best], fitnessArray[best], sigma[generation], generation, sigma[generation], comparison)
+    print(variables[best], fitnessArray[best], sigma[generation], generation, sigma[generation], comparison)
+
+    if(num > 1):
+        print(imageMaker(number_of_variables=num, name=str(func)+"_muPlusLamdba", point=([variables[best][0]],[variables[best][1]], [fitnessArray[best]]), func=function[func]))
+    else:
+        print(imageMaker(number_of_variables=num, name=str(func)+"_muPlusLamdba", point=(variables[best], [fitnessArray[best]]), func=function[func]))
     return "Vars: %s Fitness: %s Generations: %d"%(variables[best], fitnessArray[best], generation)
 
 #muPlusLambda(0)

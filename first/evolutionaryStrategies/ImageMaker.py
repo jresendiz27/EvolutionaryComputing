@@ -7,6 +7,8 @@ from mpl_toolkits.mplot3d import axes3d
 #
 RAW_VALUES = True
 IMAGE_PATH='./latex/images/'
+NUMBER_OF_SAMPLES = 500
+DISTANCE_FROM_POINT = 1500
 # Image maker function, recevives a key, value arg and creates an image, it returns the image name
 def imageMaker(**kwargs):
     fig, false = None, None
@@ -33,7 +35,7 @@ def imageMaker(**kwargs):
         fig, axes = plt.subplots()
         #generating a valid range for the solution
         # using the solution as the "origin" of the plot
-        x = linspace(x_coordinate - 1000, x_coordinate + 1000, 100)
+        x = linspace(x_coordinate - DISTANCE_FROM_POINT, x_coordinate + DISTANCE_FROM_POINT, NUMBER_OF_SAMPLES)
         y = [kwargs['func']([x[index]]) for index in range(0, len(x))]
         #plotting the function
         axes.plot(x, y, 'r')
@@ -43,11 +45,11 @@ def imageMaker(**kwargs):
         axes.scatter(kwargs['point'][0], kwargs['point'][1], marker="o")
 
     if kwargs['number_of_variables'] is 2:
-        fig = plt.figure(figsize=(8, 6))
+        fig = plt.figure()
         axes = fig.add_subplot(1, 1, 1, projection='3d')
         #p = axes.plot_wireframe(x, y, z, rstride=4, cstride=4)
-        x_linspace = linspace(x_coordinate - 1000, x_coordinate + 1000, 100)
-        y_linspace = linspace(y_coordinate - 1000, y_coordinate + 1000, 100)
+        x_linspace = linspace(x_coordinate - DISTANCE_FROM_POINT, x_coordinate + DISTANCE_FROM_POINT, NUMBER_OF_SAMPLES)
+        y_linspace = linspace(y_coordinate - DISTANCE_FROM_POINT, y_coordinate + DISTANCE_FROM_POINT, NUMBER_OF_SAMPLES)
         x,y = np.meshgrid(x_linspace,y_linspace)
         z = [kwargs['func']([x_linspace[index], y_linspace[index]]) for index in range(0, len(x_linspace))]
         #plotting the surface

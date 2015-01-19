@@ -64,9 +64,9 @@ def muCommaLambda(func):
     print(variables[best], fitnessArray[best], sigma[generation], generation, sigma[generation], comparison)
     #
     if(num > 1):
-        print(imageMaker(number_of_variables=num, name=str(func)+"_muCommaLamda", point=([variables[best][0]],[variables[best][1]], [fitnessArray[best]]), func=function[func]))
+        print(imageMaker(number_of_variables=num,function_id = func, name=str(func)+"_muCommaLamda", point=([variables[best][0]],[variables[best][1]], [fitnessArray[best]])))
     else:
-        print(imageMaker(number_of_variables=num, name=str(func)+"_muCommaLamda", point=(variables[best], [fitnessArray[best]]), func=function[func]))
+        print(imageMaker(number_of_variables=num,function_id = func, name=str(func)+"_muCommaLamda", point=(variables[best], [fitnessArray[best]])))
     return "Vars: %s Fitness: %s Generations: %d"%(variables[best], fitnessArray[best], generation)
 
 #muCommaLambda(0)

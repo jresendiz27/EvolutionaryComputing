@@ -2,12 +2,14 @@ __author__ = 'alberto'
 import random
 
 CHROMOSOME_LENGTH = 8
-POPULATION_SIZE = 8
-
+POPULATION_SIZE = 4
+NUMBER_OF_GENERATIONS = 5000
+FITNESS_WEIGHT = 0.1
+EPSILON = 0.01
 chromosome = [random.randint(0, 1) for i in range(0, CHROMOSOME_LENGTH)]
 
 
-def init(number):
+def init():
     return [[random.randint(0, 1) for i in range(0, CHROMOSOME_LENGTH)] for j in range(0, POPULATION_SIZE)]
 
 
@@ -27,7 +29,7 @@ def fitness_calculation(single):
     fitness = 0.0
     for gen in single:
         if gen == 0:
-            fitness = fitness + 0.1
+            fitness = fitness + FITNESS_WEIGHT
     return fitness
 
 
@@ -47,8 +49,6 @@ def choose_single(fitness):
         expected_value = single_fitness / fitness_average
         expected_values.append(expected_value)
 
-    # print "Sum of Expected Values = ", sum(expected_values)
-    T = sum(expected_values)
     random_number = random.random() * POPULATION_SIZE  # same as random.random()*T
     partial_sum = 0.0
     index = 0
@@ -57,6 +57,7 @@ def choose_single(fitness):
         if partial_sum >= random_number:
             return index
         index = index + 1
+
 
 def one_point_crosses(father, mother):
     cross_point = random.randint(1, CHROMOSOME_LENGTH - 1)
@@ -67,55 +68,66 @@ def one_point_crosses(father, mother):
     left_side_mother = mother[0:cross_point]
     right_side_mother = mother[cross_point:CHROMOSOME_LENGTH]
     #
-    print "Cross point :", cross_point
-    print "Father"
-    print father
-    print left_side_father
-    print right_side_father
-    print "Mother"
-    print mother
-    print left_side_mother
-    print right_side_mother
     son_one = left_side_father + right_side_mother
     son_two = left_side_mother + right_side_father
 
     return son_one, son_two
 
+
 def mutate(single):
-    mutation_point = random.randint(0,CHROMOSOME_LENGTH-1)
+    mutation_point = random.randint(0, CHROMOSOME_LENGTH - 1)
     if single[mutation_point] is 1:
         single[mutation_point] = 0
     else:
         single[mutation_point] = 1
 
 
-def eugenics(population, fitness):
+def generate_new_population(population, fitness):
     new_population = []
-    for i in range(0,int(POPULATION_SIZE/2)):
+    for i in range(0, int(POPULATION_SIZE / 2)):
         position_one = choose_single(fitness)
         position_two = choose_single(fitness)
         #
         father = population[position_one]
         mother = population[position_two]
         #
-        son_one, son_two = one_point_crosses(father,mother)
+        son_one, son_two = one_point_crosses(father, mother)
         #
         mutate(son_one)
         mutate(son_two)
         #
         new_population.append(son_one)
         new_population.append(son_two)
+    new_population = population + new_population
     return new_population
 
-def choose_best(parents, sons):
-    pass
+
+def choose_best(population):
+    return sorted(population, key=fitness_calculation, reverse=True)
+
+
+def find_best(n):
+    population = init()
+    fitness = population_fitness(population)
+    for i in range(0, NUMBER_OF_GENERATIONS):
+        value = FITNESS_WEIGHT * CHROMOSOME_LENGTH - EPSILON
+        if fitness[0] >= value:
+            print "**" * 60 + "\n"
+            print "Found at %s generation!" % (str(i))
+            print_single(population[0], fitness[0])
+            print "**" * 60 + "\n"
+            break
+        new_population = generate_new_population(population, fitness)
+        population = choose_best(new_population)
+        fitness = population_fitness(population)
+        print "+-" * 60 + "\n"
+        print "Generation: ", i
+        print "Single : ", population[0]
+        print "Fitness : ", fitness[0]
+        print "+-" * 60 + "\n"
+        #
+    return population[0:n]
+
 
 if __name__ == '__main__':
-    population = init(POPULATION_SIZE)
-    fitness = population_fitness(population)
-    print_population(population, fitness)
-    single_one = choose_single(fitness)
-    single_two = choose_single(fitness)
-    son_one, son_two = one_point_crosses(population[single_one], population[single_two])
-    print_single(son_one,fitness_calculation(son_one))
-    print_single(son_two,fitness_calculation(son_two))
+    find_best(1)

@@ -118,7 +118,7 @@ def find_best(n):
             print "**" * 60 + "\n"
             break
         new_population = generate_new_population(population, fitness)
-        population = choose_best(new_population)
+        population = (choose_best(new_population))[0:POPULATION_SIZE]
         fitness = population_fitness(population)
         print "+-" * 60 + "\n"
         print "Generation: ", i

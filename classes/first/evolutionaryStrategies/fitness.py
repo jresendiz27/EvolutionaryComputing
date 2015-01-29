@@ -5,9 +5,10 @@ Fitnesses
 '''
 #
 import math
-import numpy as np
 import random
-from ImageMaker import imageMaker
+
+import numpy as np
+
 #
 maxGenerations = 1000
 sigma = [np.float(0) for i in range(0,maxGenerations+1)]

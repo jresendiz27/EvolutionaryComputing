@@ -2,10 +2,7 @@
 Created on 09/09/2014
 @author: azu
 '''
-import random
-import numpy as np 
-import math
-from fitness import *
+from classes.first.evolutionaryStrategies.fitness import *
 
 def initialize(number):
     return [[np.float(random.gauss(0,100)) for i in range(number)] for u in range(mu)]

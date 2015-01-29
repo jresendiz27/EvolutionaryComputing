@@ -5,7 +5,9 @@ debug = False
 from pylab import *
 from sympy import solve
 from sympy.abc import x
-from PureFunctions import function as function_database
+
+from classes.first.evolutionaryStrategies.PureFunctions import function as function_database
+
 # Constant values
 RAW_VALUES = True
 IMAGE_PATH = './latex/images/'

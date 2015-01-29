@@ -10,6 +10,6 @@ EPSILON = 0.01
 chromosome = [random.randint(0, 1) for i in range(0, CHROMOSOME_LENGTH)]
 
 try:
-    from second.config import *
+    from classes.second.config import *
 except:
     print "Warning: Running without a local_settings file"

@@ -2,7 +2,7 @@
 Created on 09/09/2014
 @author: azu
 '''
-from classes.first.evolutionaryStrategies.fitness import *
+from practices.first.evolutionaryStrategies.fitness import *
 
 def initialize(number):
     return [[np.float(random.gauss(0,100)) for i in range(number)] for u in range(1)]

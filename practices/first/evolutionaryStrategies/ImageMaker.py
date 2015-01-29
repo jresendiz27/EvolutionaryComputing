@@ -6,7 +6,7 @@ from pylab import *
 from sympy import solve
 from sympy.abc import x
 
-from classes.first.evolutionaryStrategies.PureFunctions import function as function_database
+from practices.first.evolutionaryStrategies.PureFunctions import function as function_database
 
 # Constant values
 RAW_VALUES = True

@@ -5,7 +5,7 @@ Super Table
 from os import  listdir
 from os.path import isfile,join
 
-from classes.first.evolutionaryStrategies import muCommaLambda
+from practices.first.evolutionaryStrategies import muCommaLambda
 from fitness import *
 import onePlusOne
 import muPlusOne

@@ -1,8 +1,8 @@
 __author__ = 'alberto'
 import unittest
 from src.SimpleCalculator import SimpleCalculator
-from escom.pepo.genetic_algorithms.selectors.roulette import roulette_selector
-from escom.pepo.genetic_algorithms.selectors.strict import strict_selector
+from escom.pepo.genetic_algorithms.components.selectors import roulette_selector
+from escom.pepo.genetic_algorithms.components.selectors import strict_selector
 
 
 class TestSelectors(unittest.TestCase):

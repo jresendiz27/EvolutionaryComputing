@@ -12,8 +12,9 @@ def single_mutation(single, allele_index=0, modifier=None):
             single[allele_index] = 0
     return single
 
-def whole_mutation(single,modifier=None):
-    for index in range(0,len(single)):
+
+def whole_mutation(single, modifier=None):
+    for index in range(0, len(single)):
         if modifier:
             single[index] = modifier(single[index])
         else:

@@ -1,5 +1,5 @@
 __author__ = 'alberto'
-from escom.pepo.config import CHROMOSOME_LENGTH, OFFSPRING_POPULATION_SIZE, logger, np
+from escom.pepo.config import CHROMOSOME_LENGTH, OFFSPRING_POPULATION_SIZE, FITNESS_WEIGHT, logger, np
 from escom.pepo.genetic_algorithms.components.selectors import *
 from escom.pepo.genetic_algorithms.components.crosses import one_point_crosses
 from escom.pepo.genetic_algorithms.components.mutation import whole_mutation
@@ -38,3 +38,22 @@ def generate_new_population(population, fitness):
             new_population.append(son)
 
     return population + new_population
+
+
+def binary_fitness(single):
+    fitness = 0.0
+    for gen in single:
+        if gen == 0:
+            fitness = fitness + FITNESS_WEIGHT
+    return fitness
+
+
+def population_fitness(population, fitness_function=None):
+    fitness = []
+    if fitness_function:
+        for single in population:
+            fitness.append(fitness_function(single))
+    else:
+        for single in population:
+            fitness.append(binary_fitness(single))
+    return fitness

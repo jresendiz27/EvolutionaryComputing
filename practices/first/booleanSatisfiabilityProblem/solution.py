@@ -29,8 +29,9 @@ def generatetruthtable(nvariables, template):
         expression = Template(template).substitute(dictionary)
         truthtable[row, nvariables] = expression
         truthtable[row, nvariables + 1] = eval(expression)
-        #truthtable[row, nvariables] = expession
+        # truthtable[row, nvariables] = expession
     return truthtable
+
 
 def readfile(pathtofile):
     file = open(pathtofile, 'r').read()
@@ -71,13 +72,14 @@ def satsolution(pathtofile):
     file, nvariables, status, message, template = readfile(pathtofile)
     print "Expression to be evaluated : \n"
     print template
-    print "-"*60+"\n"
+    print "-" * 60 + "\n"
     if status:
         truthtable = generatetruthtable(nvariables, template)
-        for row in range(0,len(truthtable)):
+        for row in range(0, len(truthtable)):
             print truthtable[row]
-            print "-"*60+"\n"
+            print "-" * 60 + "\n"
     else:
         print message
+
 
 satsolution("./content.txt")

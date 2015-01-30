@@ -38,6 +38,6 @@ def strict_selector(fitness, asc=False):
     return index
 
 
-#Return a random index
+# Return a random index
 def random_selector(fitness):
     return random.randint(0, len(fitness))

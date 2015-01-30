@@ -4,38 +4,44 @@ Created on 09/09/2014
 '''
 from practices.first.evolutionaryStrategies.fitness import *
 
+
 def initialize(number):
-    return [[np.float(random.gauss(0,100)) for i in range(number)] for u in range(mu)]
+    return [[np.float(random.gauss(0, 100)) for i in range(number)] for u in range(mu)]
+
 
 def mutate(variables, generation, numberOfVariables):
-    return [[variables[i] + sigma[generation]*random.gauss(0,1) for i in range(numberOfVariables)] for l in range(lamb)]
+    return [[variables[i] + sigma[generation] * random.gauss(0, 1) for i in range(numberOfVariables)] for l in
+            range(lamb)]
+
 
 def success(replacement, generation, numberOfVariables):
     ps = replacement / float(generation)
-    if(generation % numberOfVariables == 0):
-        if(ps > 1/5.0):
-            return sigma[generation - numberOfVariables]/0.817
-        if(ps < 1/5.0):
-            return sigma[generation - numberOfVariables]*0.817
-        if(ps == 1/5.0):
+    if (generation % numberOfVariables == 0):
+        if (ps > 1 / 5.0):
+            return sigma[generation - numberOfVariables] / 0.817
+        if (ps < 1 / 5.0):
+            return sigma[generation - numberOfVariables] * 0.817
+        if (ps == 1 / 5.0):
             return sigma[generation - numberOfVariables]
     else:
         return sigma[generation - 1]
 
+
 def select(fitnessArray, mode):
     f = fitnessArray[:]
     f.sort()
-    middleValue = f.pop(len(f)/2)
+    middleValue = f.pop(len(f) / 2)
     secondBestValue = f.pop(1)
     selected = {
-        'best': fitnessArray.index(min(fitnessArray)), 
+        'best': fitnessArray.index(min(fitnessArray)),
         '2nd': fitnessArray.index(secondBestValue),
         'middle': fitnessArray.index(middleValue),
         'worst': fitnessArray.index(max(fitnessArray))}
     return selected[mode]
 
+
 def muPlusLambda(func):
-    print("\nES: u+1 \tFunction: %s"%(func))
+    print("\nES: u+1 \tFunction: %s" % (func))
     generation = 0
     replacement = 0
     ps = 0
@@ -45,7 +51,7 @@ def muPlusLambda(func):
     fitnessArray = [function[func](variables[u]) for u in range(mu)]
     best = select(fitnessArray, 'best')
     print(variables[best], fitnessArray[best], sigma[generation], generation, sigma[generation], comparison)
-    while(generation < maxGenerations and sigma[generation] > epsilon and min(fitnessArray) > float('-inf')):
+    while (generation < maxGenerations and sigma[generation] > epsilon and min(fitnessArray) > float('-inf')):
         actualBest = min(fitnessArray)
         best = select(fitnessArray, 'best')
 
@@ -63,19 +69,21 @@ def muPlusLambda(func):
             v.append(variables[index])
         variables = v
         fitnessArray = f
-        if(actualBest > min(fitnessArray)):
+        if (actualBest > min(fitnessArray)):
             replacement += 1
             comparison = abs(actualBest - min(fitnessArray))
         generation += 1
-        if(generation < maxGenerations):
+        if (generation < maxGenerations):
             sigma[generation] = success(replacement, generation, num)
-        
+
     print(variables[best], fitnessArray[best], sigma[generation], generation, sigma[generation], comparison)
 
-    if(num > 1):
-        print(imageMaker(number_of_variables=num,function_id = func, name=str(func)+"_muPlusLamdba", point=([variables[best][0]],[variables[best][1]], [fitnessArray[best]])))
+    if (num > 1):
+        print(imageMaker(number_of_variables=num, function_id=func, name=str(func) + "_muPlusLamdba",
+                         point=([variables[best][0]], [variables[best][1]], [fitnessArray[best]])))
     else:
-        print(imageMaker(number_of_variables=num,function_id = func, name=str(func)+"_muPlusLamdba", point=(variables[best], [fitnessArray[best]])))
-    return "Vars: %s Fitness: %s Generations: %d"%(variables[best], fitnessArray[best], generation)
+        print(imageMaker(number_of_variables=num, function_id=func, name=str(func) + "_muPlusLamdba",
+                         point=(variables[best], [fitnessArray[best]])))
+    return "Vars: %s Fitness: %s Generations: %d" % (variables[best], fitnessArray[best], generation)
 
-#muPlusLambda(0)
+    # muPlusLambda(0)

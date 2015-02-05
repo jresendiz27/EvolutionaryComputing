@@ -7,13 +7,11 @@ from escom.pepo.genetic_algorithms.components.mutation import whole_mutation
 
 def generate_population(chromosome_min_value, chromosome_max_value, generator=None):
     if generator:
-        return np.asarray(
-            [[generator(chromosome_min_value, chromosome_max_value) for i in range(0, CHROMOSOME_LENGTH)] for j
-             in range(0, POPULATION_SIZE)])
+        return [[generator(chromosome_min_value, chromosome_max_value) for i in range(0, CHROMOSOME_LENGTH)] for j
+             in range(0, POPULATION_SIZE)]
     else:
-        return np.asarray(
-            [[random.randint(chromosome_min_value, chromosome_max_value) for i in range(0, CHROMOSOME_LENGTH)] for j
-             in range(0, POPULATION_SIZE)])
+        return [[random.randint(chromosome_min_value, chromosome_max_value) for i in range(0, CHROMOSOME_LENGTH)] for j
+             in range(0, POPULATION_SIZE)]
 
 
 def show_population(population, fitness):
@@ -22,9 +20,9 @@ def show_population(population, fitness):
         logger.info("%f => %f", (population[index], fitness[index]))
 
 
-def generate_new_population(population, fitness):
-    new_population = np.array([])
-    for i in range(0, range(0, int(OFFSPRING_POPULATION_SIZE))):
+def generate_new_population(population, fitness, **kwargs):
+    new_population = []
+    for i in range(0, int(OFFSPRING_POPULATION_SIZE)):
         father_pos = roulette_selector(fitness)
         mother_pos = roulette_selector(fitness)
 
@@ -34,10 +32,13 @@ def generate_new_population(population, fitness):
         offsprings = one_point_crosses(father, mother)
 
         for son in offsprings:
-            whole_mutation(son)
+            if kwargs['mutator']:
+                whole_mutation(son, kwargs['mutator'])
+            else:
+                whole_mutation(son, kwargs['mutator'])
             new_population.append(son)
 
-    return population + new_population
+    return np.append(population, new_population)
 
 
 def binary_fitness(single):
@@ -52,8 +53,12 @@ def population_fitness(population, fitness_function=None):
     fitness = []
     if fitness_function:
         for single in population:
-            fitness.append(fitness_function(single))
+            fitness = np.append(fitness, fitness_function(single))
     else:
         for single in population:
-            fitness.append(binary_fitness(single))
+            fitness = np.append(fitness, binary_fitness(single))
     return fitness
+
+
+def choose_best(population, fitness_evaluator, number_of_singles=POPULATION_SIZE, reversed_order=True):
+    return sorted(population, key=fitness_evaluator, reverse=reversed_order)[0:number_of_singles]

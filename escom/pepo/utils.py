@@ -15,7 +15,7 @@ def measure_time(func):
         start = time.time()
         result = func(*args, **kwargs)
         end = time.time()
-        logger.info(" Running %s, execution time: %s", func.__name__, end - start)
+        logger.debug(" Running %s, execution time: %s", func.__name__, end - start)
         return result
 
     return wrapper

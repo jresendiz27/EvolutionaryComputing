@@ -5,7 +5,7 @@ from escom.pepo.config import CHROMOSOME_LENGTH, NUMBER_OF_SONS_PER_CROSS, rando
 def one_point_crosses(father, mother):
     offsprings = []
     for i in range(0, NUMBER_OF_SONS_PER_CROSS):
-        cross_point = random.randint(1, CHROMOSOME_LENGTH / 2)
+        cross_point = random.randint(1, CHROMOSOME_LENGTH-1)
         #
         left_side_father = father[0:cross_point]
         right_side_father = father[cross_point:CHROMOSOME_LENGTH]

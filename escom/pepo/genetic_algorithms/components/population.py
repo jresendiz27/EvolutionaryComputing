@@ -22,7 +22,7 @@ def show_population(population, fitness):
 
 def generate_new_population(population, fitness, **kwargs):
     new_population = []
-    for i in range(0, int(OFFSPRING_POPULATION_SIZE)):
+    for i in range(0, OFFSPRING_POPULATION_SIZE):
         father_pos = roulette_selector(fitness)
         mother_pos = roulette_selector(fitness)
 
@@ -32,13 +32,14 @@ def generate_new_population(population, fitness, **kwargs):
         offsprings = one_point_crosses(father, mother)
 
         for son in offsprings:
+            son_clone = son
             if kwargs['mutator']:
-                whole_mutation(son, kwargs['mutator'])
+                whole_mutation(son_clone, kwargs['mutator'])
             else:
-                whole_mutation(son, kwargs['mutator'])
-            new_population.append(son)
-
-    return np.append(population, new_population)
+                whole_mutation(son_clone)
+            new_population.append(son_clone)
+    total_population = population + new_population
+    return total_population
 
 
 def binary_fitness(single):

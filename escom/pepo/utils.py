@@ -12,10 +12,11 @@ def measure_time(func):
 
     @wraps(func)
     def wrapper(*args, **kwargs):
+        logger.info("Running %s", func.__name__)
         start = time.time()
         result = func(*args, **kwargs)
         end = time.time()
-        logger.debug(" Running %s, execution time: %s", func.__name__, end - start)
+        logger.info("Execution time: %s", end - start)
         return result
 
     return wrapper

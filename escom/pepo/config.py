@@ -25,3 +25,7 @@ else:
     logging.basicConfig(level=logging.INFO)
 
 logger = logging.getLogger()
+
+if FILE_NAME:
+    handler = logging.FileHandler(FILE_NAME)
+    logger.addHandler(handler)

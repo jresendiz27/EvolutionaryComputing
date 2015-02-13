@@ -1,5 +1,7 @@
 __author__ = 'alberto'
 
+import random
+
 
 def single_mutation(single, allele_index=0, modifier=None):
     if modifier:
@@ -12,8 +14,9 @@ def single_mutation(single, allele_index=0, modifier=None):
             single[allele_index] = 0
     return single
 
-def whole_mutation(single,modifier=None):
-    for index in range(0,len(single)):
+
+def whole_mutation(single, modifier=None):
+    for index in range(0, len(single)):
         if modifier:
             single[index] = modifier(single[index])
         else:
@@ -23,3 +26,10 @@ def whole_mutation(single,modifier=None):
             else:
                 single[index] = 0
         return single
+
+
+def random_mutation(single, chromosome_min_value, chromosome_max_value):
+    single_clone = single
+    for index in range(0, len(single)):
+        single_clone[index] = random.randint(chromosome_min_value, chromosome_max_value)
+    return single_clone

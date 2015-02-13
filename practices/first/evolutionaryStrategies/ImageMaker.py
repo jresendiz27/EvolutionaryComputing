@@ -32,23 +32,23 @@ def imageMaker(**kwargs):
         return False, None
     # check which type of plot we will use
     if kwargs['number_of_variables'] < 2:
-        #Looking for discontinuities in the function given
-        discontinuities = sort(solve(function_database[kwargs['function_id']] ,x))
+        # Looking for discontinuities in the function given
+        discontinuities = sort(solve(function_database[kwargs['function_id']], x))
         # pieces from xmin to last discontinuity
         last_b = X_MIN
         for b in discontinuities:
             # check that this discontinuity is inside our range, also make sure it's real
-            if b<last_b or b>X_MAX or not(str(b).isdigit):
-              continue
+            if b < last_b or b > X_MAX or not (str(b).isdigit):
+                continue
             #Generaton a valid range
             xi = np.arange(last_b, b, X_STEP)
             #Removing the last element from the range, is the one we don't desire on the function
-            plot(xi[:-1], 1./(xi[:-1]-2),'r-')
+            plot(xi[:-1], 1. / (xi[:-1] - 2), 'r-')
             last_b = float(str(b))
         # from last discontinuity to xmax
         xi = np.arange(last_b, X_MAX, X_STEP)
         #plotting the function, removing the first one, it's the one we don't want!
-        plot(xi[1:], 1./(xi[1:]-2),'r-')
+        plot(xi[1:], 1. / (xi[1:] - 2), 'r-')
         points = [kwargs['point'][0], kwargs['point'][1]]
         #plotting the answer
         plt.plot(*zip(points), marker="o")
@@ -59,13 +59,13 @@ def imageMaker(**kwargs):
         X = np.arange(-2, 2, 0.25)
         Y = np.arange(-2, 2, 0.25)
         X, Y = np.meshgrid(X, Y)
-        Z = function_database[kwargs['function_id']](X,Y)
+        Z = function_database[kwargs['function_id']](X, Y)
         surf = ax.plot_surface(X, Y, Z, rstride=1, cstride=1, cmap=cm.coolwarm,
-                linewidth=0, antialiased=False)
+                               linewidth=0, antialiased=False)
         ax.zaxis.set_major_locator(LinearLocator(10))
     # Trying to save the image
     try:
-        #Setting the title of each image
+        # Setting the title of each image
         fig.suptitle('Excersice ' + str(kwargs['name']))
         #Saving the image
         plt.savefig(IMAGE_PATH + str(kwargs['name']) + '.png')

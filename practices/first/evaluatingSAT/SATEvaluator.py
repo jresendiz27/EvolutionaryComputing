@@ -2,7 +2,7 @@
 López Garduño Blanca Azucena
 Reséndiz Arteaga Juan Alberto
 SAT problem
-'''# All the libraries we are going to use
+'''  # All the libraries we are going to use
 import sys
 import thread
 import cProfile
@@ -35,11 +35,18 @@ def evaluateAllMaxiterms(numberOfVariables=variables):
     numberposibilitesToEvaluate = 2 ** numberOfVariables
     allTerms = getGlobalExpression(numberOfVariables)
     if numberOfVariables >= 4:
-        t1 = Thread(target=evaluateMaxitermsThread,args=("ThreadMaxiterm-1", 0, numberposibilitesToEvaluate / 4, numberOfVariables, allTerms ))
-        t2 = Thread(target=evaluateMaxitermsThread,args=("ThreadMaxiterm-2", (numberposibilitesToEvaluate / 4), (numberposibilitesToEvaluate / 4) * 2, numberOfVariables, allTerms))
-        t3 = Thread(target=evaluateMaxitermsThread,args=("ThreadMaxiterm-3", (numberposibilitesToEvaluate / 4) * 2, (numberposibilitesToEvaluate / 4) * 3, numberOfVariables, allTerms))
-        t4 = Thread(target=evaluateMaxitermsThread,args=("ThreadMaxiterm-4", (numberposibilitesToEvaluate / 4) * 3, numberposibilitesToEvaluate, numberOfVariables, allTerms))
-        #Initializacion of each thread
+        t1 = Thread(target=evaluateMaxitermsThread,
+                    args=("ThreadMaxiterm-1", 0, numberposibilitesToEvaluate / 4, numberOfVariables, allTerms ))
+        t2 = Thread(target=evaluateMaxitermsThread, args=(
+        "ThreadMaxiterm-2", (numberposibilitesToEvaluate / 4), (numberposibilitesToEvaluate / 4) * 2, numberOfVariables,
+        allTerms))
+        t3 = Thread(target=evaluateMaxitermsThread, args=(
+        "ThreadMaxiterm-3", (numberposibilitesToEvaluate / 4) * 2, (numberposibilitesToEvaluate / 4) * 3,
+        numberOfVariables, allTerms))
+        t4 = Thread(target=evaluateMaxitermsThread, args=(
+        "ThreadMaxiterm-4", (numberposibilitesToEvaluate / 4) * 3, numberposibilitesToEvaluate, numberOfVariables,
+        allTerms))
+        # Initializacion of each thread
         t1.start()
         t2.start()
         t3.start()
@@ -71,11 +78,11 @@ def evaluateMaxitermsThread(threadName, startPoint, endPoint, numberOfVariables,
 # Defines if its necessary to use threads or not!
 def generateHugeArray():
     if variables >= 4:
-        #Like Java style!
-        t1 = Thread(target=fillArray,args=("Thread-1",0, numberposibilites / 4 ))
-        t2 = Thread(target=fillArray,args=("Thread-2",(numberposibilites / 4), (numberposibilites / 4) * 2 ))
-        t3 = Thread(target=fillArray,args=("Thread-3",(numberposibilites / 4) * 2, (numberposibilites / 4) * 3))
-        t4 = Thread(target=fillArray,args=("Thread-4",(numberposibilites / 4) * 3, numberposibilites))
+        # Like Java style!
+        t1 = Thread(target=fillArray, args=("Thread-1", 0, numberposibilites / 4 ))
+        t2 = Thread(target=fillArray, args=("Thread-2", (numberposibilites / 4), (numberposibilites / 4) * 2 ))
+        t3 = Thread(target=fillArray, args=("Thread-3", (numberposibilites / 4) * 2, (numberposibilites / 4) * 3))
+        t4 = Thread(target=fillArray, args=("Thread-4", (numberposibilites / 4) * 3, numberposibilites))
         #Initializacion of each thread
         t1.start()
         t2.start()
@@ -91,7 +98,7 @@ def generateHugeArray():
         fillArray("Main", 0, numberposibilites)
 
 
-#'cuz expression was toooo big we decided to split all the information in threads (again ...)
+# 'cuz expression was toooo big we decided to split all the information in threads (again ...)
 def evaluateExpressionThread(threadIdentifier, arrayExpression, allTerms, startPoint, endPoint):
     result = 1
     arrayExpressionLength = len(arrayExpression)
@@ -114,10 +121,13 @@ def evaluateExpression(arrayExpression, allTerms):
     allTermsLength = len(allTerms)
     numerOfTerms = len(arrayExpression)
     if numerOfTerms >= 4:
-        t1 = Thread(target=evaluateExpressionThread,args=(1, arrayExpression, allTerms, 0, (allTermsLength / 4 )))
-        t2 = Thread(target=evaluateExpressionThread,args=(2, arrayExpression, allTerms, (allTermsLength / 4), (allTermsLength / 4) * 2))
-        t3 = Thread(target=evaluateExpressionThread,args=(3, arrayExpression, allTerms, (allTermsLength / 4) * 2, (allTermsLength / 4) * 3))
-        t4 = Thread(target=evaluateExpressionThread,args=(4, arrayExpression, allTerms, (allTermsLength / 4) * 3, allTermsLength))
+        t1 = Thread(target=evaluateExpressionThread, args=(1, arrayExpression, allTerms, 0, (allTermsLength / 4 )))
+        t2 = Thread(target=evaluateExpressionThread,
+                    args=(2, arrayExpression, allTerms, (allTermsLength / 4), (allTermsLength / 4) * 2))
+        t3 = Thread(target=evaluateExpressionThread,
+                    args=(3, arrayExpression, allTerms, (allTermsLength / 4) * 2, (allTermsLength / 4) * 3))
+        t4 = Thread(target=evaluateExpressionThread,
+                    args=(4, arrayExpression, allTerms, (allTermsLength / 4) * 3, allTermsLength))
         #Initializacion of each thread
         t1.start()
         t2.start()
@@ -138,14 +148,14 @@ def main():
         generateHugeArray()
         #for variableToEvaluate in range(1, variables+1):
         #    evaluateAllMaxiterms(variableToEvaluate)
-        var = arange(0,variables,1)
+        var = arange(0, variables, 1)
         start_time = time.time()
         for i in var:
             evaluateAllMaxiterms(i)
             actual_time[i] = time.time() - start_time
-            print ("Variables: %s --- Execution time:  %s seconds ---"%(i,actual_time[i]))
+            print ("Variables: %s --- Execution time:  %s seconds ---" % (i, actual_time[i]))
             start_time = time.time()
-        plot(var,actual_time)
+        plot(var, actual_time)
         ylabel('time (s)')
         xlabel('number or variables')
         title('Time evaluation')
@@ -156,7 +166,7 @@ def main():
         print e
     else:
         pass
-    finally:        #print array
+    finally:  #print array
         pass
 
 #in order to get all execution time and all the calls the program did while executing time
